@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import auth from '../auth'
+// import auth from '../auth'
 export default {
   data() {
     return {
@@ -43,7 +43,9 @@ export default {
         login: this.credentials.username,
         password: this.credentials.password
       }
-      auth.login(this, credentials, 'home')
+      //auth.login(this, credentials, 'home')
+
+      this.$store.dispatch('getToken', credentials)
     }
   }
 

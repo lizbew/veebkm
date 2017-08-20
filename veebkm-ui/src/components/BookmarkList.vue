@@ -29,6 +29,8 @@ export default {
     bookmarks: 'allBookmarks',
   }),
 
+  // ready() {}
+
   created() {
     this.$store.dispatch('getAllBookmarks')
   },

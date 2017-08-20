@@ -3,8 +3,8 @@ import Router from 'vue-router';
 // import Hello from '@/components/Hello';
 import BookmarkList from '@/components/BookmarkList';
 
-import Signup from '@/components/Signup.vue'
-import Login from '@/components/Login.vue'
+import Signup from '@/components/Signup'
+import Login from '@/components/Login'
 
 Vue.use(Router);
 

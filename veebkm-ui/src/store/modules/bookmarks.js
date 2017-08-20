@@ -1,6 +1,6 @@
 
 import * as types from '../mutation-types'
-import veebkmService from '@/services/veebkm'
+import { veebkmService } from '@/services'
 
 
 // initial state
@@ -16,6 +16,7 @@ const getters = {
 // actions
 const actions = {
   getAllBookmarks ({ commit }) {
+
     veebkmService.getBookmarks().then(bookmarks => {
       commit(types.RECEIVE_BOOKMARKS, { bookmarks })
     }).catch((error) => { console.log(error) });

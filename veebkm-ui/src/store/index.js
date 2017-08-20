@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 // import * as actions from './actions'
 // import * as getters from './getters'
 import bookmarks from './modules/bookmarks'
+import auth from './modules/auth'
 
 // import createLogger from '../../../src/plugins/logger'
 
@@ -14,7 +15,8 @@ export default new Vuex.Store({
   // actions,
   // getters,
   modules: {
-    bookmarks
+    bookmarks,
+    auth,
   },
   strict: debug,
   // plugins: debug ? [createLogger()] : []

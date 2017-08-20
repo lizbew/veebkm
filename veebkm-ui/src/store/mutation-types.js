@@ -1,1 +1,4 @@
 export const RECEIVE_BOOKMARKS = 'RECEIVE_BOOKMARKS'
+
+export const SET_ID_TOKEN = 'SET_ID_TOKEN'
+export const GET_TOEKN_FAILED = 'GET_TOEKN_FAILED'
