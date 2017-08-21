@@ -20,7 +20,8 @@ const actions = {
     veebkmService.getBookmarks().then(bookmarks => {
       commit(types.RECEIVE_BOOKMARKS, { bookmarks })
     }).catch((error) => { console.log(error) });
-  }
+  },
+
 }
 
 // mutations

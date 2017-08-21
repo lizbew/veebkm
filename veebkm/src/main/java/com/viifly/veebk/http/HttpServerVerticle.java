@@ -223,11 +223,11 @@ public class HttpServerVerticle extends AbstractVerticle {
 
   private void apiCreateBookmark(RoutingContext context) {
     if (context.user().principal().getBoolean("canCreate", false)) {
-      JsonObject page = context.getBodyAsJson();
-      if (!validateJsonBookmarkDocument(context, page, "title", "url")) {
+      JsonObject bookmark = context.getBodyAsJson();
+      if (!validateJsonBookmarkDocument(context, bookmark, "title", "url")) {
         return;
       }
-      dbService.createBookmark(page.getString("title"), page.getString("url"), reply -> {
+      dbService.createBookmark(bookmark.getString("title"), bookmark.getString("url"), reply -> {
         if (reply.succeeded()) {
           context.response().setStatusCode(201);
           context.response().putHeader("Content-Type", "application/json");

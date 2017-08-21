@@ -4,17 +4,38 @@
   <form id="search">
     Search <input name="query" v-model="searchQuery">
   </form>
+  <div v-for="row in bookmarks">
+    <item :bookmark="row"></item>
+  </div>
+
+  <!--
   <demo-grid
     :data="bookmarks"
     :columns="gridColumns"
     :filter-key="searchQuery">
   </demo-grid>
+  -->
+  <form id="add-form">
+    <div>
+      <label for="new-title">Title</label>
+      <input id="new-title" name="title" type="text" v-model="newOne.title">
+    </div>
+    <div>
+      <label for="new-title">Url</label>
+      <input id="new-url" name="url" type="text" v-model="newOne.url">
+    </div>
+    <div>
+      <input name="add-btn" type="button" @click="addBookmark" value="Save">
+    </div>
+  </form>
 </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import DemoGrid from './DemoGrid';
+// import DemoGrid from './DemoGrid';
+import Item from './item';
+import { veebkmService } from '@/services';
 
 export default {
   name: 'bookmark-list',
@@ -22,12 +43,38 @@ export default {
     return {
       searchQuery: '',
       gridColumns: ['id', 'title', 'url'],
+      newOne: {
+        title: '',
+        url: '',
+      }
     }
   },
 
   computed: mapGetters({
     bookmarks: 'allBookmarks',
   }),
+
+  methods: {
+    addBookmark: function() {
+      if (!this.newOne.title || !this.newOne.url) {
+        alert("must input both name and url");
+        return;
+      }
+      veebkmService.addBookmark(this.newOne.title, this.newOne.url).then((data) => {
+        if (data.success){
+          this.newOne.title = "";
+          this.newOne.url = "";
+          this.$store.dispatch('getAllBookmarks')
+
+          alert("OK");
+        } else {
+          alert("Failed: " + data.error);
+        }
+
+      });
+
+    },
+  },
 
   // ready() {}
 
@@ -36,7 +83,7 @@ export default {
   },
 
   components: {
-    DemoGrid,
+    Item,
   },
 };
 </script>
